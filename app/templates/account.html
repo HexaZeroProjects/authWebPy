@@ -1,9 +1,67 @@
 {% extends "base.html" %}
 
 {% block title %}
-аккаунт
+Аккаунт
 {% endblock %}
 
 {% block content %}
-<h1>Это страница вашего аккаунта</h1>
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Аккаунт</h1>
+
+    <!-- Текущая информация -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Текущая информация</h5>
+        </div>
+        <div class="card-body">
+            <p><strong>Имя пользователя:</strong> {{ current_user.username }}</p>
+            <p><strong>Email:</strong> {{ current_user.email }}</p>
+        </div>
+    </div>
+
+    <!-- Форма редактирования -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Редактировать профиль</h5>
+        </div>
+        <div class="card-body">
+            <form method="post" action="{{ url_for('account') }}" class="needs-validation" novalidate>
+                {{ form.hidden_tag() }}
+                <div class="mb-3">
+                    {{ form.username.label(class="form-label") }}
+                    {{ form.username(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    {{ form.email.label(class="form-label") }}
+                    {{ form.email(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    {{ form.password.label(class="form-label") }}
+                    {{ form.password(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    {{ form.confirm_password.label(class="form-label") }}
+                    {{ form.confirm_password(class="form-control") }}
+                </div>
+                <div class="text-center">
+                    {{ form.submit(class="btn btn-primary w-100") }}
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Дополнительные функции -->
+<div class="card">
+    <div class="card-header">
+        <h5>Дополнительные действия</h5>
+    </div>
+    <div class="card-body text-center">
+        <div class="d-flex justify-content-around">
+            <a href="{{ url_for('logout') }}" class="btn btn-warning">Выйти из аккаунта</a>
+            <a href="{{ url_for('delete_account') }}" class="btn btn-danger">Удалить аккаунт</a>
+        </div>
+    </div>
+</div>
+
+</div>
 {% endblock %}

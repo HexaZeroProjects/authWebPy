@@ -5,25 +5,25 @@
 {% endblock %}
 
 {% block content %}
-<h1>Вход</h1>
-<form method="post" action="{{ url_for('login') }}">
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Вход</h1>
+    <form method="post" action="{{ url_for('login') }}" class="needs-validation" novalidate>
         {{ form.hidden_tag() }}
-        <div>
-            {{ form.email.label }}
-            {{ form.email(size=32) }}
+        <div class="mb-3">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control", size=32) }}
         </div>
-        <div>
-            {{ form.password.label }}
-            {{ form.password(size=32) }}
+        <div class="mb-3">
+            {{ form.password.label(class="form-label") }}
+            {{ form.password(class="form-control", size=32) }}
         </div>
-        <div>
-            {{ form.remember() }}
-            {{ form.remember.label }}
+        <div class="form-check mb-3">
+            {{ form.remember(class="form-check-input") }}
+            {{ form.remember.label(class="form-check-label") }}
         </div>
-        <div>
-            {{ form.submit() }}
+        <div class="text-center">
+            {{ form.submit(class="btn btn-primary w-100") }}
         </div>
-
-</form>
-
+    </form>
+</div>
 {% endblock %}
